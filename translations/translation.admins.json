@@ -1,0 +1,263 @@
+{
+    "remove": {
+        "en": "You've succesfully removed {green}{STEAMID}{default} from admin list.",
+        "ro": "L-ai șters cu succes pe {green}{STEAMID}{default} din lista de admini."
+    },
+    "not_an_admin_steamid": {
+        "en": "SteamID {green}{STEAMID}{default} is not an admin.",
+        "ro": "SteamID {green}{STEAMID}{default} nu este admin."
+    },
+    "no_admins_list": {
+        "en": "There are no admins to be shown.",
+        "ro": "Nu sunt admini pentru a putea fi arătați."
+    },
+    "admins_loaded": {
+        "en": "{green}{COUNT}{default} admin(s) loaded from database.",
+        "ro": "{green}{COUNT}{default} admin(i) încărcați din baza de date."
+    },
+    "is_already_admin_steamid": {
+        "en": "SteamID {green}{STEAMID}{default} is already an admin.",
+        "ro": "SteamID {green}{STEAMID}{default} este deja admin."
+    },
+    "invalid_flags": {
+        "en": "Invalid flags.",
+        "ro": "Flag-uri invalide."
+    },
+    "invalid_group": {
+        "en": "Invalid group.",
+        "ro": "Grupă invalidă."
+    },
+    "username_already_exists": {
+        "en": "An admin with the username {green}{USERNAME}{default} already exists.",
+        "ro": "Un admin cu username-ul {green}{USERNAME}{default} deja există."
+    },
+    "edit_succesfully": {
+        "en": "You've succesfully edited {green}{STEAMID}{default}'s {green}{OPTION}{default} to {green}{VALUE}{default}.",
+        "ro": "I-ai editat cu succes {green}{OPTION}{default}-ul lui {green}{STEAMID}{default} în {green}{VALUE}{default}."
+    },
+    "added_succesfully": {
+        "en": "You've succesfully added {green}{STEAMID}{default} as an admin.\nUsername: {green}{USERNAME}{default}, Immunity: {green}{IMMUNITY}{default}, Group: {green}{GROUP}{default}, Flags: {green}{FLAGS}{default}",
+        "ro": "L-ai adăugat cu succes pe {green}{STEAMID}{default} ca admin.\nUsername: {green}{USERNAME}{default}, Imunitate: {green}{IMMUNITY}{default}, Grupă: {green}{GROUP}{default}, Flags: {green}{FLAGS}{default}"
+    },
+    "group_exists": {
+        "en": "A group with the name {green}{NAME}{default} already exists.",
+        "ro": "Un grup cu numele {green}{NAME}{default} deja există."
+    },
+    "group_added": {
+        "en": "You've succesfully added a group.\nName: {green}{NAME}{default}, Display Name: {green}{DISPLAYNAME}{default}, Flags: {green}{FLAGS}{default}",
+        "ro": "Ai adăugat cu succes o nouă grupă.\nName: {green}{NAME}{default}, Display Name: {green}{DISPLAYNAME}{default}, Flags: {green}{FLAGS}{default}"
+    },
+    "no_groups_list": {
+        "en": "There are no groups to be shown.",
+        "ro": "Nu sunt grupe pentru a putea fi arătate."
+    },
+    "no_group_exists": {
+        "en": "No group exists with name {green}{NAME}{default}.",
+        "ro": "Nu există nicio grupă cu numele {green}{NAME}{default}."
+    },
+    "remove_group": {
+        "en": "You've succesfully removed group {green}{NAME}{default}.",
+        "ro": "Ai șters cu succes grupa {green}{NAME}{default}."
+    },
+    "group_edit_succesfully": {
+        "en": "You've succesfully edited {green}{OPTION}{default} to {green}{VALUE}{default} for group {green}{NAME}{default}.",
+        "ro": "I-ai editat cu succes {green}{OPTION}{default}-ul grupei {green}{NAME}{default} în {green}{VALUE}{default}."
+    },
+    "no_permission": {
+        "en": "You're not having the permission(s) to use this command.",
+        "ro": "Nu ai permisiunea să rulezi această comandă."
+    },
+    "admin_menu_title": {
+        "en": "Admin Menu",
+        "ro": "Meniu Admin"
+    },
+    "slap.syntax": {
+        "en": "Syntax: %sslap <target>\n",
+        "ro": "Sintaxă: %sslap <target>\n",
+        "es": "Sintaxis: %sslap <jugador>\n"
+    },
+    "slay.syntax": {
+        "en": "Syntax: %sslay <target>\n",
+        "ro": "Sintaxă: %sslay <target>\n",
+        "es": "Sintaxis: %sslay <jugador>\n"
+    },
+    "rename.syntax": {
+        "en": "Syntax: %srename <target> <name>\n",
+        "ro": "Sintaxă: %srename <target> <nume>\n",
+        "es": "Sintaxis: %srename <jugador> <nombre>\n"
+    },
+    "ban.syntax": {
+        "en": "Syntax: %sban <target> <minutes / 0 - permanent> <reason>\n",
+        "ro": "Sintaxă: %sban <target> <minute / 0 - permanent> <motiv>\n",
+        "es": "Sintaxis: %sban <jugador> <minutos / 0 - permanente> <razón>\n"
+    },
+    "mute.syntax": {
+        "en": "Syntax: %smute <target> <minutes / 0 - permanent> <reason>\n",
+        "ro": "Sintaxă: %smute <target> <minute / 0 - permanent> <motiv>\n",
+        "es": "Sintaxis: %smute <jugador> <minutos / 0 - permanente> <razón>\n"
+    },
+    "mute.message": {
+        "en": "{green}{ADMIN_NAME}{default} muted {green}{PLAYER_NAME}{default} for {green}{TIME}{default}, reason: {green}{REASON}{default}",
+        "ro": "{green}{ADMIN_NAME}{default} i-a dat mute lui {green}{PLAYER_NAME}{default} pentru {green}{TIME}{default}, motiv: {green}{REASON}{default}"
+    },
+    "mute.already": {
+        "en": "{green}{PLAYER_NAME}{default} is already muted.",
+        "ro": "{green}{PLAYER_NAME}{default} is already muted.",
+        "es": "{green}{PLAYER_NAME}{default} is already muted."
+    },
+    "unmute.message": {
+        "en": "{green}{ADMIN_NAME}{default} unmuted {green}{PLAYER_NAME}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} unmuted {green}{PLAYER_NAME}{default}.",
+        "es": "{green}{ADMIN_NAME}{default} unmuted {green}{PLAYER_NAME}{default}."
+    },
+    "unmute.syntax": {
+        "en": "Syntax: %sunmute <target>",
+        "ro": "Syntax: %sunmute <target>",
+        "es": "Syntax: %sunmute <target>"
+    },
+    "gag.syntax": {
+        "en": "Syntax: %sgag <target> <minutes / 0 - permanent> <reason>\n",
+        "ro": "Sintaxă: %sgag <target> <minute / 0 - permanent> <motiv>\n",
+        "es": "Sintaxis: %sgag <jugador> <minutos / 0 - permanente> <razón>\n"
+    },
+    "gag.message": {
+        "en": "{green}{ADMIN_NAME}{default} gagged {green}{PLAYER_NAME}{default} for {green}{TIME}{default}, reason: {green}{REASON}{default}",
+        "ro": "{green}{ADMIN_NAME}{default} i-a dat gag lui {green}{PLAYER_NAME}{default} pentru {green}{TIME}{default}, motiv: {green}{REASON}{default}"
+    },
+    "ungag.message": {
+        "en": "{green}{ADMIN_NAME}{default} ungagged {green}{PLAYER_NAME}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} ungagged {green}{PLAYER_NAME}{default}.",
+        "es": "{green}{ADMIN_NAME}{default} ungagged {green}{PLAYER_NAME}{default}."
+    },
+    "ungag.syntax": {
+        "en": "Syntax: %sungag <target>",
+        "ro": "Syntax: %sungag <target>",
+        "es": "Syntax: %sungag <target>"
+    },
+    "gag.try": {
+        "en": "You are currently gagged, you will be able to talk in: {green}{TIME}{default}.",
+        "ro": "Momentan ai gag, vei putea vorbi în {green}{TIME}{default}."
+    },
+    "gag.already": {
+        "en": "{green}{PLAYER_NAME}{default} is already gagged.",
+        "ro": "{green}{PLAYER_NAME}{default} are deja gag."
+    },
+    "silence.syntax": {
+        "en": "Syntax: %ssilence <target> <minutes / 0 - permanent> <reason>\n",
+        "ro": "Sintaxă: %ssilence <target> <minute / 0 - permanent> <motiv>\n",
+        "es": "Sintaxis: %ssilence <jugador> <minutos / 0 - permanente> <razón>\n"
+    },
+    "silence.message": {
+        "en": "{green}{ADMIN_NAME}{default} silenced {green}{PLAYER_NAME}{default} for {green}{TIME}{default}, reason: {green}{REASON}{default}",
+        "ro": "{green}{ADMIN_NAME}{default} i-a dat silence lui {green}{PLAYER_NAME}{default} pentru {green}{TIME}{default}, motiv: {green}{REASON}{default}"
+    },
+    "unsilence.syntax": {
+        "en": "Syntax: %sunsilence <target>",
+        "ro": "Syntax: %sunsilence <target>",
+        "es": "Syntax: %sunsilence <target>"
+    },
+    "unsilence.message": {
+        "en": "{green}{ADMIN_NAME}{default} unsilenced {green}{PLAYER_NAME}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} i-a scos silence-ul {green}{PLAYER_NAME}{default}."
+    },
+    "ban.message": {
+        "en": "{green}{ADMIN_NAME}{default} banned {green}{PLAYER_NAME}{default} for {green}{TIME}{default}, reason: {green}{REASON}{default}",
+        "ro": "{green}{ADMIN_NAME}{default} l-a banat pe {green}{PLAYER_NAME}{default} pentru {green}{TIME}{default}, motiv: {green}{REASON}{default}"
+    },
+    "banip.syntax": {
+        "en": "Syntax: %sbanip <target> <minutes / 0 - permanent> <reason>\n",
+        "ro": "Sintaxă: %sbanip <target> <minute / 0 - permanent> <motiv>\n",
+        "es": "Sintaxis: %sbanip <jugador> <minutos / 0 - permanente> <razón>\n"
+    },
+    "kick.syntax": {
+        "en": "Syntax: %skick <target> <reason>\n",
+        "ro": "Sintaxă: %skick <target>  <motiv>\n",
+        "es": "Sintaxis: %skick <jugador> <razón>\n"
+    },
+    "kick.message": {
+        "en": "{green}{ADMIN_NAME}{default} kicked {green}{PLAYER_NAME}{default} from the server, reason: {green}{REASON}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} l-a scos pe jucatorul {green}{PLAYER_NAME}{default} de pe server, motiv: {green}{REASON}{default}."
+    },
+    "slay.message": {
+        "en": "{green}{ADMIN_NAME}{default} slayed {green}{PLAYER_NAME}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} l-a omorât {green}{PLAYER_NAME}{default}."
+    },
+    "rename.message": {
+        "en": "{green}{ADMIN_NAME}{default} renamed {green}{PLAYER_NAME}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} l-a redenumit pe {green}{PLAYER_NAME}{default}."
+    },
+    "csay.syntax": {
+        "en": "Syntax: %scsay <message>.\n",
+        "ro": "Syntax: %scsay <message>.\n",
+        "es": "Syntax: %scsay <message>.\n"
+    },
+    "rcon.syntax": {
+        "en": "Syntax: %srcon <message>.\n",
+        "ro": "Syntax: %srcon <message>.\n",
+        "es": "Syntax: %srcon <message>.\n"
+    },
+    "slap.message": {
+        "en": "{green}{ADMIN_NAME}{default} slapped {green}{PLAYER_NAME}{default} for {green}{HEALTH}{default} HP.",
+        "ro": "{green}{ADMIN_NAME}{default} zburat {green}{PLAYER_NAME}{default} cu {green}{HEALTH}{default} HP."
+    },
+    "invalid_player": {
+        "en": "No player could be found.\n",
+        "ro": "Nu am putut găsi jucătorul.\n",
+        "es": "No se pudo encontrar al jugador.\n"
+    },
+    "chat.to_admins": {
+        "en": "{green}(To Admins) {NAME}{default}: {TEXT}\n",
+        "ro": "{green}(Către Admini) {NAME}{default}: {TEXT}\n",
+        "es": "{green}(Para Admins) {NAME}{default}: {TEXT}\n"
+    },
+    "chat.admin_chat": {
+        "en": "{green}(Admin Chat) {NAME}{default}: {TEXT}\n",
+        "ro": "{green}(Admin Chat) {NAME}{default}: {TEXT}\n",
+        "es": "{green}(Chat de Admin) {NAME}{default}: {TEXT}\n"
+    },
+    "invalid_time": {
+        "en": "Invalid time. ({MIN}-{MAX})",
+        "ro": "Timp invalid. ({MIN}-{MAX})",
+        "es": "Tiempo inválido. ({MIN}-{MAX})"
+    },
+    "gag.expire": {
+        "en": "Your gag expired.",
+        "ro": "Gag-ul tău a expirat."
+    },
+    "mute.expire": {
+        "en": "Your mute expired.",
+        "ro": "Mute-ul tău a expirat."
+    },
+    "mute.inexistent": {
+        "en": "{green}{PLAYER_NAME}{default} is not muted.",
+        "ro": "{green}{PLAYER_NAME}{default} nu are mute."
+    },
+    "gag.inexistent": {
+        "en": "{green}{PLAYER_NAME}{default} is not gagged.",
+        "ro": "{green}{PLAYER_NAME}{default} nu are gag."
+    },
+    "silence.already": {
+        "en": "{green}{PLAYER_NAME}{default} is already gagged or muted.",
+        "ro": "{green}{PLAYER_NAME}{default} are deja gag sau mute."
+    },
+    "silence.inexistent": {
+        "en": "{green}{PLAYER_NAME}{default} is not silenced.",
+        "ro": "{green}{PLAYER_NAME}{default} nu are silence."
+    },
+    "menu.empty": {
+        "en": "The Admin Menu has no options.",
+        "ro": "Admin Menu-ul nu are opțiuni."
+    },
+    "reload": {
+        "en": "All the server admins have been reloaded succesfully.",
+        "ro": "Toți adminii de pe server au fost reîncărcați cu succes."
+    },
+    "unban": {
+        "en": "{green}{ADMIN}{default} succesfully unbanned {green}{STEAMID}{default}.",
+        "ro": "{green}{ADMIN}{default} l-a debanat cu succes pe {green}{STEAMID}{default}."
+    },
+    "unbanip": {
+        "en": "{green}{ADMIN}{default} succesfully unbanned IP {green}{IP}{default}.",
+        "ro": "{green}{ADMIN}{default} l-a debanat cu succes IP-ul {green}{IP}{default}."
+    }
+}
