@@ -101,6 +101,8 @@ The following exports are available:
 | GetImmunity |     playerid    |                 Returns the immunity of the player                |
 | HasAdminGroup | playerid, group | Checks if a player has the group provided in the second argument |
 | GetAdminGroup |     playerid    |                 Returns the group of the player                |
+| RegisterMenuCategory | translation_id, command, flag | Registers a menu category inside !admin and returns an option id |
+| UnregisterMenuCategory | id | Unregisters a menu category from !admin |
 
 ### Admin Commands 💬
 
