@@ -112,7 +112,7 @@ The following exports are available:
 |:----------------:|:-----------------:|:--------------------------------------:|
 |     !admins    |       CONSOLE     |        Admins Manager command.        |
 |   !groups   |       CONSOLE     |    Groups Manager command.   |
-
+| !admin | b | Admin Menu command. | 
 ### Creating A Pull Request 😃
 
 1. Fork the Project
