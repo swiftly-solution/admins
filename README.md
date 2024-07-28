@@ -57,7 +57,7 @@ immunity => A number greater or equal than 0
 
 ```
 steamid => SteamID 64 of the player
-username => SteamID 64 of the player
+username => nickname of the player
 flags => The flags provided below (example: abcd)
 immunity => A number greater or equal than 0
 group => Optional, Group Name
