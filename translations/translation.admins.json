@@ -169,6 +169,14 @@
         "ro": "Sintaxă: %sbanip <target> <minute / 0 - permanent> <motiv>\n",
         "es": "Sintaxis: %sbanip <jugador> <minutos / 0 - permanente> <razón>\n"
     },
+    "unban.message": {
+        "en": "{green}{ADMIN_NAME}{default} unbanned {green}{STEAMID}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} l-a debanat pe {green}{STEAMID}{default}."
+    },
+    "unbanip.message": {
+        "en": "{green}{ADMIN_NAME}{default} unbanned {green}{IP}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} l-a debanat pe {green}{IP}{default}."
+    },
     "kick.syntax": {
         "en": "Syntax: %skick <target> <reason>\n",
         "ro": "Sintaxă: %skick <target>  <motiv>\n",
@@ -252,12 +260,96 @@
         "en": "All the server admins have been reloaded succesfully.",
         "ro": "Toți adminii de pe server au fost reîncărcați cu succes."
     },
-    "unban": {
-        "en": "{green}{ADMIN}{default} succesfully unbanned {green}{STEAMID}{default}.",
-        "ro": "{green}{ADMIN}{default} l-a debanat cu succes pe {green}{STEAMID}{default}."
+    "adminmenu.bans.title": {
+        "en": "Admin Bans Menu",
+        "ro": "Admin Bans Menu."
     },
-    "unbanip": {
-        "en": "{green}{ADMIN}{default} succesfully unbanned IP {green}{IP}{default}.",
-        "ro": "{green}{ADMIN}{default} l-a debanat cu succes IP-ul {green}{IP}{default}."
+    "bans.addban": {
+        "en": "Add a ban.",
+        "ro": "Add a ban."
+    },
+    "add.slap": {
+        "en": "Slap someone.",
+        "ro": "Slap someone."
+    },
+    "bans.select_reason": {
+        "en": "Select the reason.",
+        "ro": "Select the reason."
+    },
+    "no_players": {
+        "en": "No players.",
+        "ro": "No players."
+    },
+    "time": {
+        "en": "Time",
+        "ro": "Timp"
+    },
+    "not_connected": {
+        "en": "The player is no more connected.",
+        "ro": "Jucătorul nu mai este conectat."
+    },
+    "addban_confirm": {
+        "en": "Are you sure do you want to give <font color='#{COLOR}'>{PLAYER_NAME}</font> BAN for <font color='#{COLOR}'>{TIME}</font>?",
+        "ro": "Ești sigur că vrei să îi dai lui <font color='#{COLOR}'>{PLAYER_NAME}</font> BAN pentru <font color='#{COLOR}'>{TIME}</font>?"
+    },
+    "confirm": {
+        "en": "Confirm",
+        "ro": "Confirmare"
+    },
+    "yes": {
+        "en": "Yes",
+        "ro": "Da"
+    },
+    "no": {
+        "en": "No",
+        "ro": "Nu"
+    },
+    "adminmenu.comms.title": {
+        "en": "Admin Comms Menu",
+        "ro": "Admin Comms Menu."
+    },
+    "adminmenu.addmute": {
+        "en": "Add a mute",
+        "ro": "Add a mute"
+    },
+    "adminmenu.addgag": {
+        "en": "Add a gag",
+        "ro": "Add a gag"
+    },
+    "adminmenu.addsilence": {
+        "en": "Add silence",
+        "ro": "Add silence"
+    },
+    "addmute_confirm": {
+        "en": "Are you sure do you want to give <font color='#{COLOR}'>{PLAYER_NAME}</font> MUTE for <font color='#{COLOR}'>{TIME}</font>?",
+        "ro": "Ești sigur că vrei să îi dai lui <font color='#{COLOR}'>{PLAYER_NAME}</font> MUTE pentru <font color='#{COLOR}'>{TIME}</font>?"
+    },
+    "addgag_confirm": {
+        "en": "Are you sure do you want to give <font color='#{COLOR}'>{PLAYER_NAME}</font> GAG for <font color='#{COLOR}'>{TIME}</font>?",
+        "ro": "Ești sigur că vrei să îi dai lui <font color='#{COLOR}'>{PLAYER_NAME}</font> GAG pentru <font color='#{COLOR}'>{TIME}</font>?"
+    },
+    "addsilence_confirm": {
+        "en": "Are you sure do you want to give <font color='#{COLOR}'>{PLAYER_NAME}</font> GAG for <font color='#{COLOR}'>{TIME}</font>?",
+        "ro": "Ești sigur că vrei să îi dai lui <font color='#{COLOR}'>{PLAYER_NAME}</font> GAG pentru <font color='#{COLOR}'>{TIME}</font>?"
+    },
+    "adminmenu.commands.title": {
+        "en": "Admin Commands Menu",
+        "ro": "Admin Commands Menu."
+    },
+    "adminmenu.slap": {
+        "en": "Slap",
+        "ro": "Slap"
+    },
+    "adminmenu.slay": {
+        "en": "Slay",
+        "ro": "Slay"
+    },
+    "slap.select_health": {
+        "en": "Select the health",
+        "ro": "Select the health"
+    },
+    "slay.already_dead": {
+        "en": "{green} {PLAYER_NAME} {DEFAULT} is already dead.",
+        "ro": "{green} {PLAYER_NAME} {DEFAULT} is already dead."
     }
 }

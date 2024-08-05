@@ -3,7 +3,7 @@ groupMapFlags = {}
 AddEventHandler("OnPluginStart", function(event)
 	db = Database(config:Fetch("admins.connection_name"))
 	if not db:IsConnected() then return EventResult.Continue end
-
+        
 	db:Query(
 		"CREATE TABLE `" ..
 		config:Fetch("admins.tablenames.admins") ..
