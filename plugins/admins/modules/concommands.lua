@@ -193,14 +193,16 @@ local adminsCommands = {
             { "id", "steamid", "username", "group", "flags", "immunity" }
         }
         for i=1,#adminsRawList do
-            table.insert(adminShow, {
-                string.format("%02d.", i),
-                adminsRawList[i].steamid,
-                adminsRawList[i].username,
-                adminsRawList[i].group,
-                adminsRawList[i].flags,
-                tostring(adminsRawList[i].immunity)
-            })
+            if type(adminsRawList[i]) == "table" then
+				 table.insert(adminShow, {
+                    string.format("%02d.", #adminShow),
+                    adminsRawList[i].steamid,
+                    adminsRawList[i].username,
+                    adminsRawList[i].group,
+                    adminsRawList[i].flags,
+                    tostring(adminsRawList[i].immunity)
+                })
+			end
         end
         print(CreateTextTable(adminShow))
     end,
@@ -304,12 +306,14 @@ local groupsCommands = {
             { "ID", "Group Name", "Display Name", "Flags" }
         }
         for i=1,#groups do
-            table.insert(groupShow, {
-                string.format("%02d.", i),
-                groups[i].groupname,
-                groups[i].group_displayname,
-                groups[i].flags:len() == 0 and "-" or groups[i].flags
-            })
+            if type(groups[i]) == "table" then
+               	table.insert(groupShow, {
+                    string.format("%02d.", #groupShow),
+                    groups[i].groupname,
+                    groups[i].group_displayname,
+                    groups[i].flags:len() == 0 and "-" or groups[i].flags
+                }) 
+            end
         end
         print(CreateTextTable(groupShow))
     end,

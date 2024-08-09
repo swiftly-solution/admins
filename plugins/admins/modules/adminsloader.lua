@@ -47,7 +47,9 @@ function GroupsLoader(cb)
 			groups = result
 
 			for i = 1, #result do
-				groupMapFlags[result[i].groupname] = result[i].flags
+                if type(result[i]) == "table" then
+					groupMapFlags[result[i].groupname] = result[i].flags
+				end
 			end
 
 			LoadAdmins(cb)
