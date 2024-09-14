@@ -5,7 +5,6 @@
         "bans": "sw_bans",
         "comms": "sw_comms"
     },
-    "serverid": 1,
     "connection_name": "swiftly_admins",
     "prefix": "[{lime}Swiftly{default}]",
     "amenucolor": "00B869"
