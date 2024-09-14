@@ -1,28 +1,24 @@
 groupMapFlags = {}
 
 AddEventHandler("OnPluginStart", function(event)
-	db = Database(config:Fetch("admins.connection_name"))
+	db = Database(tostring(config:Fetch("admins.connection_name")))
 	if not db:IsConnected() then return EventResult.Continue end
         
-	db:Query(
-		"CREATE TABLE `" ..
-		config:Fetch("admins.tablenames.admins") ..
-		"` ( `steamid` varchar(128) NOT NULL, `username` varchar(128) NOT NULL, `group` text DEFAULT NULL, `flags` text DEFAULT NULL, `immunity` int(11) NOT NULL DEFAULT 0, `serverid` int(11) NOT NULL DEFAULT 1 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;",
+	db:QueryParams(
+		"CREATE TABLE `@tablename` ( `steamid` varchar(128) NOT NULL, `username` varchar(128) NOT NULL, `group` text DEFAULT NULL, `flags` text DEFAULT NULL, `immunity` int(11) NOT NULL DEFAULT 0 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;",
+		{ tablename = config:Fetch("admins.tablenames.admins") },
 		function(err, result)
 			if #result > 0 then
-				db:Query("ALTER TABLE `" ..
-					config:Fetch("admins.tablenames.admins") .. "` ADD UNIQUE KEY `steamid` (`steamid`,`username`);")
+				db:QueryParams("ALTER TABLE `@tablename` ADD UNIQUE KEY `steamid` (`steamid`,`username`);", { tablename = config:Fetch("admins.tablenames.admins") })
 			end
 		end)
 
-	db:Query(
-		"CREATE TABLE `" ..
-		config:Fetch("admins.tablenames.groups") ..
-		"` ( `groupname` varchar(128) NOT NULL, `group_displayname` text NOT NULL, `flags` text NOT NULL, `serverid` int(11) NOT NULL DEFAULT 1 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;",
+	db:QueryParams(
+		"CREATE TABLE `@tablename` ( `groupname` varchar(128) NOT NULL, `group_displayname` text NOT NULL, `flags` text NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;",
+		{ tablename = config:Fetch("admins.tablenames.groups") },
 		function(err, result)
 			if #result > 0 then
-				db:Query("ALTER TABLE `" ..
-					config:Fetch("admins.tablenames.groups") .. "` ADD UNIQUE KEY `groupname` (`groupname`);")
+				db:QueryParams("ALTER TABLE `@tablename` ADD UNIQUE KEY `groupname` (`groupname`);", { tablename = config:Fetch("admins.tablenames.groups") })
 			end
 		end)
 
@@ -40,9 +36,10 @@ function GroupsLoader(cb)
 	groupMapFlags = {}
 	adminsRawList = {}
 
-	db:Query(
-		"select * from `" .. config:Fetch("admins.tablenames.groups") ..
-		"` where serverid = " .. config:Fetch("admins.serverid"), function(err, result)
+	db:QueryParams(
+		"select * from `@tablename`",
+		{ tablename = config:Fetch("admins.tablenames.groups") },
+		function(err, result)
 			if #err > 0 then return print("ERROR: " .. err) end
 			groups = result
 
@@ -85,15 +82,15 @@ function CalculateFlags(flags)
 end
 
 function LoadAdmins(cb)
-	db:Query(
-		"select * from `" .. config:Fetch("admins.tablenames.admins") ..
-		"` where serverid = " .. config:Fetch("admins.serverid"), function(err, result)
+	db:QueryParams(
+		"select * from `@tablename`",
+		{ tablename = config:Fetch("admins.tablenames.admins") },
+		function(err, result)
 			if #err > 0 then return print("ERROR: " .. err) end
 			for i = 1, #result do
 				if type(result[i]) == "table" then
 					if result[i].immunity < 0 then
-						logger:Write(LogType_t.Warning,
-							"Immunity for '" .. result[i].steamid .. "' can't be negative, automatically setting it to 0")
+						logger:Write(LogType_t.Warning, "Immunity for '" .. result[i].steamid .. "' can't be negative, automatically setting it to 0")
 						result[i].immunity = 0
 					end
 
@@ -108,8 +105,7 @@ function LoadAdmins(cb)
 						if flagsPermissions[flag] then
 							table.insert(giveFlags, flagsPermissions[flag])
 						else
-							logger:Write(LogType_t.Warning,
-								"Invalid flag for '" .. result[i].steamid .. "': '" .. flag .. "'")
+							logger:Write(LogType_t.Warning, "Invalid flag for '" .. result[i].steamid .. "': '" .. flag .. "'")
 						end
 					end
 
@@ -181,9 +177,14 @@ AddEventHandler("OnClientDisconnect", function(event)
 	player:SetVar("admin.group", "None")
 end)
 
+---@param event Event
+---@param playerid number
+---@param target string
 AddEventHandler("FindPlayerByTarget", function(event, playerid, target)
 	local str = target:sub(1, 1)
 	if str == "@" then
-		local group = target:sub(2)
+		local group = target:sub(2):lower()
+		local playerGroup = exports[GetCurrentPluginName()]:GetAdminGroup(playerid):lower()
+		event:SetReturn(group == playerGroup)
 	end
 end)

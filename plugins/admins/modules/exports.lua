@@ -17,11 +17,11 @@ end)
 export("GetImmunity", function(playerid)
     local player = GetPlayer(playerid)
     if not player then return 0 end
-    return player:GetVar("admin.immunity")
+    return (player:GetVar("admin.immunity") or 0)
 end)
 
 export("GetAdminGroup", function(playerid)
     local player = GetPlayer(playerid)
     if not player then return "none" end
-    return player:GetVar("admin.group")
+    return (player:GetVar("admin.group") or "none")
 end)

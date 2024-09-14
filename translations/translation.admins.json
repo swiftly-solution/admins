@@ -351,5 +351,22 @@
     "slay.already_dead": {
         "en": "{green} {PLAYER_NAME} {DEFAULT} is already dead.",
         "ro": "{green} {PLAYER_NAME} {DEFAULT} is already dead."
+    },
+    "changemap.syntax": {
+        "en": "Syntax: %smap <map>\n",
+        "ro": "Sintaxă: %smap <map>\n",
+        "es": "Sintaxis: %smap <map>\n"
+    },
+    "invalid_map": {
+        "en": "Map {red}{MAP}{default} is invalid.",
+        "ro": "Harta {red}{MAP}{default} este invalidă."
+    },
+    "ban.playermessage": {
+        "en": "{PREFIX} You've been banned from this server.\n{PREFIX} Time: {TIME}\n{PREFIX} Time left: {TIME_LEFT}\n{PREFIX} Reason: {REASON}\n{PREFIX} Admin: {ADMIN_NAME} ({ADMIN_STEAMID})",
+        "ro": "{PREFIX} Ai fost banat de pe acest server.\n{PREFIX} Timp: {TIME}\n{PREFIX} Timp rămas: {TIME_LEFT}\n{PREFIX} Motiv: {REASON}\n{PREFIX} Admin: {ADMIN_NAME} ({ADMIN_STEAMID})"
+    },
+    "changing_map": {
+        "en": "Changing map to {green}{MAP}{default}...",
+        "ro": "Schimbăm harta în {green}{MAP}{default}..."
     }
 }
