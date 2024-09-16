@@ -283,7 +283,7 @@ local groupsCommands = {
 
         db:QueryParams(
             "insert into `@tablename` (groupname, group_displayname, flags) values ('@groupname', '@group_displayname', '@flags')",
-            { tablename = config:Fetch("admins.tablenames.groups"), name = name, display_name = display_name, flags = flags }
+            { tablename = config:Fetch("admins.tablenames.groups"), groupname = name, group_displayname = display_name, flags = flags }
         )
 
         ReloadServerAdmins()
