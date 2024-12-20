@@ -28,10 +28,7 @@ local adminsCommands = {
             end
         end
 
-        db:QueryParams(
-            "insert into `@tablename` (steamid, username, `group`, flags, immunity) values ('@steamid', '@username', '@group', '@flags', @immunity)",
-            { tablename = config:Fetch("admins.tablenames.admins"), steamid = steamid, username = username, group = (group == "none" and "NULL" or group), flags = flags, immunity = immunity }
-        )
+        db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Insert({ steamid = steamid, username = username, ["`group`"] = (group == "none" and "NULL" or group), flags = flags, immunity = immunity }):Execute()
 
         local flgs = (group == "none" and "" or groupMapFlags[group])..flags
         local giveFlags = {}
@@ -89,10 +86,8 @@ local adminsCommands = {
                 end
             end
 
-            db:QueryParams(
-                "update `@tablename` set username = '@value' where steamid = '@steamid' limit 1",
-                { tablename = config:Fetch("admins.tablenames.admins"), value = value, steamid = steamid }
-            )
+
+            db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Update({ username = value }):Where("steamid", "=", steamid):Execute()
         elseif option == "immunity" then
             for i=1,#adminsRawList do
                 if adminsRawList[i].steamid == steamid then
@@ -109,10 +104,7 @@ local adminsCommands = {
                 end
             end
 
-            db:QueryParams(
-                "update `@tablename` set immunity = @value where steamid = '@steamid' limit 1",
-                { tablename = config:Fetch("admins.tablenames.admins"), value = value, steamid = steamid }
-            )
+            db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Update({ immunity = value }):Where("steamid", "=", steamid):Execute()
         elseif option == "flags" then
             if value == "none" then value = "" end
             if not HasValidFlags(value) then
@@ -140,10 +132,7 @@ local adminsCommands = {
 			end
 
             admins[steamid] = CalculateFlags(giveFlags)
-            db:QueryParams(
-                "update `@tablename` set flags = '@value' where steamid = '@steamid' limit 1",
-                { tablename = config:Fetch("admins.tablenames.admins"), value = value, steamid = steamid }
-            )
+            db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Update({ flags = value }):Where("steamid", "=", steamid):Execute()
 
             local findPlayers = FindPlayersByTarget(steamid, false)
             for i=1,#findPlayers do
@@ -181,10 +170,7 @@ local adminsCommands = {
 
             admins[steamid] = CalculateFlags(giveFlags)
 
-            db:QueryParams(
-                "update `@tablename` set `group` = '@value' where steamid = '@steamid' limit 1",
-                { tablename = config:Fetch("admins.tablenames.admins"), value = value, steamid = steamid }
-            )
+            db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Update({ ["`group`"] = value }):Where("steamid", "=", steamid):Execute()
 
             local findPlayers = FindPlayersByTarget(steamid, false)
             for i=1,#findPlayers do
@@ -242,10 +228,7 @@ local adminsCommands = {
             end
         end
 
-        db:QueryParams(
-            "delete from `@tablename` where steamid = '@steamid' limit 1",
-            { tablename = config:Fetch("admins.tablenames.admins"), steamid = steamid }
-        )
+        db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Delete():Where("steamid", "=", steamid):Execute()
 
         local findPlayers = FindPlayersByTarget(steamid, false)
         for i=1,#findPlayers do
@@ -281,10 +264,7 @@ local groupsCommands = {
             return ReplyToCommand(playerid, config:Fetch("admins.prefix"), FetchTranslation("admins.invalid_flags"))
         end
 
-        db:QueryParams(
-            "insert into `@tablename` (groupname, group_displayname, flags) values ('@groupname', '@group_displayname', '@flags')",
-            { tablename = config:Fetch("admins.tablenames.groups"), groupname = name, group_displayname = display_name, flags = flags }
-        )
+        db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.groups"))):Insert({ groupname = name, group_displayname = display_name, flags = flags }):Execute()
 
         ReloadServerAdmins()
 
@@ -304,19 +284,13 @@ local groupsCommands = {
         end
 
         if option == "displayname" then
-            db:QueryParams(
-                "update `@tablename` set group_displayname = '@value' where groupname = '@groupname' limit 1",
-                { tablename = config:Fetch("admins.tablenames.groups"), value = value, groupname = name }
-            )
+            db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.groups"))):Update({ group_displayname = value }):Where("groupname", "=", name):Execute()
         elseif option == "flags" then
             if not HasValidFlags(value) then
                 return ReplyToCommand(playerid, config:Fetch("admins.prefix"), FetchTranslation("admins.invalid_flags"))
             end
 
-            db:QueryParams(
-                "update `@tablename` set flags = '@value' where groupname = '@groupname' limit 1",
-                { tablename = config:Fetch("admins.tablenames.groups"), value = value, groupname = name }
-            )
+            db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.groups"))):Update({ flags = value }):Where("groupname", "=", name):Execute()
         else
             return ReplyToCommand(playerid, config:Fetch("admins.prefix"), "Syntax: sw_groups edit <name> <displayname/flags> <value>")
         end
@@ -356,10 +330,7 @@ local groupsCommands = {
             return ReplyToCommand(playerid, config:Fetch("admins.prefix"), FetchTranslation("admins.no_group_exists"):gsub("{NAME}", name))
         end
 
-        db:QueryParams(
-            "delete from `@tablename` where groupname = '@groupname' limit 1",
-            { tablename = config:Fetch("admins.tablenames.groups"), groupname = name }
-        )
+        db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.groups"))):Delete():Where("groupname", "=", name):Execute()
 
         ReloadServerAdmins()
 

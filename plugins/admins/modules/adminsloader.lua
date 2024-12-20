@@ -3,24 +3,20 @@ groupMapFlags = {}
 AddEventHandler("OnPluginStart", function(event)
 	db = Database(tostring(config:Fetch("admins.connection_name")))
 	if not db:IsConnected() then return EventResult.Continue end
-        
-	db:QueryParams(
-		"CREATE TABLE `@tablename` ( `steamid` varchar(128) NOT NULL, `username` varchar(128) NOT NULL, `group` text DEFAULT NULL, `flags` text DEFAULT NULL, `immunity` int(11) NOT NULL DEFAULT 0 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;",
-		{ tablename = config:Fetch("admins.tablenames.admins") },
-		function(err, result)
-			if #result > 0 then
-				db:QueryParams("ALTER TABLE `@tablename` ADD UNIQUE KEY `steamid` (`steamid`,`username`);", { tablename = config:Fetch("admins.tablenames.admins") })
-			end
-		end)
 
-	db:QueryParams(
-		"CREATE TABLE `@tablename` ( `groupname` varchar(128) NOT NULL, `group_displayname` text NOT NULL, `flags` text NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;",
-		{ tablename = config:Fetch("admins.tablenames.groups") },
-		function(err, result)
-			if #result > 0 then
-				db:QueryParams("ALTER TABLE `@tablename` ADD UNIQUE KEY `groupname` (`groupname`);", { tablename = config:Fetch("admins.tablenames.groups") })
-			end
-		end)
+	db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Create({
+		steamid = "string|max:128|unique",
+		username = "string|max:128|unique",
+		["`group`"] = "string|nullable",
+		flags = "string|nullable",
+		immunity = "integer|default:0"
+	}):Execute()
+
+	db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.groups"))):Create({
+		groupname = "string|max:128|unique",
+		group_displayname = "string",
+		flags = "string"
+	}):Execute()
 
 	GroupsLoader()
 	return EventResult.Continue
@@ -36,21 +32,18 @@ function GroupsLoader(cb)
 	groupMapFlags = {}
 	adminsRawList = {}
 
-	db:QueryParams(
-		"select * from `@tablename`",
-		{ tablename = config:Fetch("admins.tablenames.groups") },
-		function(err, result)
-			if #err > 0 then return print("ERROR: " .. err) end
-			groups = result
+	db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.groups"))):Select({}):Execute(function (err, result)
+		if #err > 0 then return print("ERROR: " .. err) end
+		groups = result
 
-			for i = 1, #result do
-                if type(result[i]) == "table" then
-					groupMapFlags[result[i].groupname] = result[i].flags
-				end
+		for i = 1, #result do
+			if type(result[i]) == "table" then
+				groupMapFlags[result[i].groupname] = result[i].flags
 			end
+		end
 
-			LoadAdmins(cb)
-		end)
+		LoadAdmins(cb)
+	end)
 end
 
 function CalculateFlags(flags)
@@ -82,49 +75,47 @@ function CalculateFlags(flags)
 end
 
 function LoadAdmins(cb)
-	db:QueryParams(
-		"select * from `@tablename`",
-		{ tablename = config:Fetch("admins.tablenames.admins") },
-		function(err, result)
-			if #err > 0 then return print("ERROR: " .. err) end
-			for i = 1, #result do
-				if type(result[i]) == "table" then
-					if result[i].immunity < 0 then
-						logger:Write(LogType_t.Warning, "Immunity for '" .. result[i].steamid .. "' can't be negative, automatically setting it to 0")
-						result[i].immunity = 0
-					end
 
-					if result[i].group and groupMapFlags[result[i].group] then
-						adminGroups[result[i].steamid] = result[i].group
-						result[i].flags = groupMapFlags[result[i].group] .. result[i].flags
-					end
-
-					local giveFlags = {}
-					for j = 1, result[i].flags:len() do
-						local flag = result[i].flags:sub(j, j)
-						if flagsPermissions[flag] then
-							table.insert(giveFlags, flagsPermissions[flag])
-						else
-							logger:Write(LogType_t.Warning, "Invalid flag for '" .. result[i].steamid .. "': '" .. flag .. "'")
-						end
-					end
-
-					local calculatedFlags = CalculateFlags(giveFlags)
-					giveFlags = {}
-
-					admins[result[i].steamid] = calculatedFlags
-					adminImmunities[result[i].steamid] = result[i].immunity
-					table.insert(adminsRawList, result[i])
+	db:QueryBuilder():Table(tostring(config:Fetch("admins.tablenames.admins"))):Select({}):Execute(function (err, result)
+		if #err > 0 then return print("ERROR: " .. err) end
+		for i = 1, #result do
+			if type(result[i]) == "table" then
+				if result[i].immunity < 0 then
+					logger:Write(LogType_t.Warning, "Immunity for '" .. result[i].steamid .. "' can't be negative, automatically setting it to 0")
+					result[i].immunity = 0
 				end
-			end
 
-			if type(cb) == "function" then
-				cb()
-			end
+				if result[i].group and groupMapFlags[result[i].group] then
+					adminGroups[result[i].steamid] = result[i].group
+					result[i].flags = groupMapFlags[result[i].group] .. result[i].flags
+				end
 
-			local out, _ = FetchTranslation("admins.admins_loaded"):gsub("{COUNT}", #adminsRawList)
-			print(out)
-		end)
+				local giveFlags = {}
+				for j = 1, result[i].flags:len() do
+					local flag = result[i].flags:sub(j, j)
+					if flagsPermissions[flag] then
+						table.insert(giveFlags, flagsPermissions[flag])
+					else
+						logger:Write(LogType_t.Warning, "Invalid flag for '" .. result[i].steamid .. "': '" .. flag .. "'")
+					end
+				end
+
+				local calculatedFlags = CalculateFlags(giveFlags)
+				giveFlags = {}
+
+				admins[result[i].steamid] = calculatedFlags
+				adminImmunities[result[i].steamid] = result[i].immunity
+				table.insert(adminsRawList, result[i])
+			end
+		end
+
+		if type(cb) == "function" then
+			cb()
+		end
+
+		local out, _ = FetchTranslation("admins.admins_loaded"):gsub("{COUNT}", #adminsRawList)
+		print(out)
+	end)
 end
 
 function LoadAdmin(player)
@@ -167,8 +158,7 @@ AddEventHandler("OnPlayerConnectFull", function(event)
 	LoadAdmin(player)
 end)
 
-AddEventHandler("OnClientDisconnect", function(event)
-	local playerid = event:GetInt("userid")
+AddEventHandler("OnClientDisconnect", function(event, playerid)
 	local player = GetPlayer(playerid)
 	if not player then return end
 
