@@ -220,9 +220,9 @@
         "es": "{green}{ADMIN_NAME}{default} mató a {green}{PLAYER_NAME}{default}."
     },
     "rename.message": {
-        "en": "{green}{ADMIN_NAME}{default} renamed {green}{PLAYER_NAME}{default}.",
-        "ro": "{green}{ADMIN_NAME}{default} l-a redenumit pe {green}{PLAYER_NAME}{default}.",
-        "es": "{green}{ADMIN_NAME}{default} renombró a {green}{PLAYER_NAME}{default}."
+        "en": "{green}{ADMIN_NAME}{default} changed {green}{PLAYER_NAME}{default}'s name to {green}{NEW_NAME}{default}.",
+        "ro": "{green}{ADMIN_NAME}{default} i-a schimbat numele lui {green}{PLAYER_NAME}{default} în {green}{NEW_NAME}{default}.",
+        "es": "{green}{ADMIN_NAME}{default} cambió el nombre de {green}{PLAYER_NAME}{default} a {green}{NEW_NAME}{default}."
     },
     "csay.syntax": {
         "en": "Syntax: %scsay <message>.\n",
