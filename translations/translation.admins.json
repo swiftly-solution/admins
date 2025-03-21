@@ -109,6 +109,11 @@
         "ro": "Sintaxă: %sban <target> <minute / 0 - permanent> <motiv>\n",
         "es": "Sintaxis: %sban <jugador> <minutos / 0 - permanente> <razón>\n"
     },
+    "bano.syntax": {
+        "en": "Syntax: %sbano <steamid>  <name> <minutes / 0 - permanent> <reason>\n",
+        "ro": "Sintaxă: %sbano <steamid>  <nume> <minute / 0 - permanent> <motiv>\n",
+        "es": "Sintaxis: %sbano <steamid>  <nombre> <minutos / 0 - permanente> <razón>\n"
+    },
     "mute.syntax": {
         "en": "Syntax: %smute <target> <minutes / 0 - permanent> <reason>\n",
         "ro": "Sintaxă: %smute <target> <minute / 0 - permanent> <motiv>\n",
